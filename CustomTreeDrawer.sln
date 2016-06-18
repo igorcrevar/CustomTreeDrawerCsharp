@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomTreeDrawer", "CustomTreeDrawer\CustomTreeDrawer.csproj", "{C606B711-FF63-423E-AA6E-72FB2E652499}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomTreeDrawerWPF", "CustomTreeDrawerWPF\CustomTreeDrawerWPF.csproj", "{B783E6B9-8F70-4F3B-A905-B773F89BD876}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomTreeDrawerTest", "CustomTreeDrawerTest\CustomTreeDrawerTest.csproj", "{30C2CC1B-05E9-46B4-9B4B-EE612805DE5C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomTreeDrawerWPFExample", "CustomTreeDrawerWPFExample\CustomTreeDrawerWPFExample.csproj", "{1B90A0A9-FC8C-418E-934B-B8E2FD60D65E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C606B711-FF63-423E-AA6E-72FB2E652499}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C606B711-FF63-423E-AA6E-72FB2E652499}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C606B711-FF63-423E-AA6E-72FB2E652499}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C606B711-FF63-423E-AA6E-72FB2E652499}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B783E6B9-8F70-4F3B-A905-B773F89BD876}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B783E6B9-8F70-4F3B-A905-B773F89BD876}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B783E6B9-8F70-4F3B-A905-B773F89BD876}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B783E6B9-8F70-4F3B-A905-B773F89BD876}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30C2CC1B-05E9-46B4-9B4B-EE612805DE5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30C2CC1B-05E9-46B4-9B4B-EE612805DE5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30C2CC1B-05E9-46B4-9B4B-EE612805DE5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30C2CC1B-05E9-46B4-9B4B-EE612805DE5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B90A0A9-FC8C-418E-934B-B8E2FD60D65E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B90A0A9-FC8C-418E-934B-B8E2FD60D65E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B90A0A9-FC8C-418E-934B-B8E2FD60D65E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B90A0A9-FC8C-418E-934B-B8E2FD60D65E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
