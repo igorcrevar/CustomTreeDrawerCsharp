@@ -3,9 +3,10 @@
 ### Customizable tree drawer
 Easily customized for different drawers. Currently only WPF; new ones are easy to create - just make your implementation of ICustomTreeDrawer.
 
-Easily customizable for different tree types. Currently there are two types:
+Easily customizable for different tree types. Currently there are:
 - DefaultCustomTreeType draws all nodes on same level in same line
-- NewLineCustomTreeType draws nodes similar to tree rendering in Tortoisehg
+- NewLineCustomTreeTypeReverse draws nodes similar to tree rendering in Tortoisehg
+- NewLineCustomTreeType draws nodes similar to tree rendering in Tortoisehg but root node is on top
 
 ### How to use?
 Nodes are created with CustomTreeNode class. 
@@ -21,7 +22,7 @@ Actual drawer is created with something like:
 ``` c#
 var wpfDrawerSettings = WPFTreeNodeDrawerSettings.CreateDefault();
 var drawer = new WPFTreeNodeDrawer(TreeGrid, wpfDrawerSettings); // TreeGrid is some panel object in your xaml
-var treeType = new NewLineCustomTreeType(drawer);
+var treeType = new NewLineCustomTreeTypeReverse(drawer);
 tree = new CustomTree(treeType);            
 tree.Update(rootNode);
 ```

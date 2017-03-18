@@ -275,8 +275,8 @@ namespace CustomTreeDrawer.Base
 				{
 					child.DetermineMeasurements(currRow + 1, currCol + width);
 					width += child.Width;
-					height = Math.Max(height, 1 + child.Height);
-					maxChildId = Math.Max(maxChildId, child.MaxChildId);
+					height = Math.Max(height, 1 + child.height);
+					maxChildId = Math.Max(maxChildId, child.maxChildId);
 				}
 			}
 		}

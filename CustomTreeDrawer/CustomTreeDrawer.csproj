@@ -49,6 +49,7 @@
     <Compile Include="TreeTypes\DefaultCustomTreeType.cs" />
     <Compile Include="Drawers\Interfaces\ICustomTreeDrawer.cs" />
     <Compile Include="TreeTypes\NewLineCustomTreeType.cs" />
+    <Compile Include="TreeTypes\NewLineCustomTreeTypeReverse.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

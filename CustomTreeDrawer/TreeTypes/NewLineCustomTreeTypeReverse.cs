@@ -2,24 +2,26 @@
 using CustomTreeDrawer.Base.Interfaces;
 using CustomTreeDrawer.Drawers;
 using CustomTreeDrawer.Drawers.Interfaces;
+using CustomTreeDrawer.Helpers;
 using System;
 
 namespace CustomTreeDrawer.TreeTypes
 {
-	public class DefaultCustomTreeType : ICustomTreeType
+	public class NewLineCustomTreeTypeReverse : ICustomTreeType
 	{
 		private readonly ICustomTreeDrawer actualDrawer;
 		private CustomTreeDrawerSettings settings;
 		private double width;
 		private double height;
+		private int maxId;
 
-		public DefaultCustomTreeType(CustomTreeDrawerSettings settings, ICustomTreeDrawer actualDrawer)
+		public NewLineCustomTreeTypeReverse(CustomTreeDrawerSettings settings, ICustomTreeDrawer actualDrawer)
 		{
 			this.settings = settings;
 			this.actualDrawer = actualDrawer;
 		}
 
-		public DefaultCustomTreeType(ICustomTreeDrawer actualDrawer)
+		public NewLineCustomTreeTypeReverse(ICustomTreeDrawer actualDrawer)
 			: this(CreateDefaultSettings(), actualDrawer)
 		{
 		}
@@ -34,11 +36,11 @@ namespace CustomTreeDrawer.TreeTypes
 			// has at least one child
 			if (node.ChildrenCount > 0)
 			{
-				// has at least one children draw half of vertical line bellow
+				// has at least one children draw half of vertical line above
 				actualDrawer.DrawLine(x,
 										  x,
-										  y + settings.NodeSize,
-										  y + settings.NodeSize + segmentHeightHalf);
+										  y - segmentHeightHalf,
+										  y);
 
 				// more children
 				if (node.ChildrenCount > 1)
@@ -46,24 +48,29 @@ namespace CustomTreeDrawer.TreeTypes
 					// horizonatal line
 					actualDrawer.DrawLine(x,
 											  x + settings.SegmentWidth * node.ChildrenWidth,
-											  y + settings.NodeSize + segmentHeightHalf,
-											  y + settings.NodeSize + segmentHeightHalf);
+											  y - segmentHeightHalf,
+											  y - segmentHeightHalf);
 				}
 			}
 
-			// not root draw half of vertical line above
+			// not root draw half of vertical line bellow
 			if (node.TopPadding > 0)
 			{
 				actualDrawer.DrawLine(x,
 										  x,
-										  y - segmentHeightHalf,
-										  y);
+										  y + settings.NodeSize,
+										  y + settings.NodeSize + segmentHeightHalf + (settings.SegmentHeight + settings.NodeSize) * (node.Id - node.ParentId - 1));
+			}
+
+			if (isSelected)
+			{
+				actualDrawer.DrawWholeLineSelected(y - segmentHeightHalf, settings.SegmentHeight + settings.NodeSize);
 			}
 
 			actualDrawer.DrawNode(x - nodeSizeHalf,
 									  y,
 									  settings.NodeSize,
-									  isSelected, node.Info);
+									  false, node.Info);
 		}
 
 		public void GetXY(CustomTreeNode node, out double x, out double y)
@@ -74,7 +81,7 @@ namespace CustomTreeDrawer.TreeTypes
 			}
 
 			x = settings.CanvasPaddingX + settings.SegmentWidth * node.LeftPadding + settings.NodeSize / 2.0f;
-			y = settings.CanvasPaddingY + (settings.NodeSize + settings.SegmentHeight) * node.TopPadding;
+			y = settings.CanvasPaddingY + (settings.NodeSize + settings.SegmentHeight) * (maxId - node.Id);
 		}
 
 		/// <summary>
@@ -89,15 +96,16 @@ namespace CustomTreeDrawer.TreeTypes
 		{
 			double nx, ny;
 			GetXY(node, out nx, out ny);
-			double nodeSizeHalf = settings.NodeSize / 2.0f;
-			return nx - nodeSizeHalf <= x && x <= nx - nodeSizeHalf + settings.SegmentWidth &&
-				   ny <= y && y <= ny + settings.NodeSize;
+			double startY = ny - settings.SegmentHeight / 2.0f;
+			double endY = startY + settings.SegmentHeight + settings.NodeSize;
+			return startY <= y && y <= endY;
 		}
 
 		public void Update(CustomTreeNode rootNode)
 		{
-			width = settings.CanvasPaddingX * 2 + (rootNode.Width) * settings.SegmentWidth;
-			height = settings.CanvasPaddingY * 2 + (rootNode.Height - 1) * settings.SegmentHeight + settings.NodeSize * rootNode.Height;
+			maxId = rootNode.MaxChildId;
+			width = settings.CanvasPaddingX * 2 + CustomTreeHelper.DetermineSize(rootNode, this, this.actualDrawer, settings.NodeSize);
+			height = settings.CanvasPaddingY * 2 + (rootNode.MaxChildId - 1) * settings.SegmentHeight + settings.NodeSize * rootNode.MaxChildId;
 			actualDrawer.OnUpdate(width, height);
 		}
 
@@ -136,7 +144,7 @@ namespace CustomTreeDrawer.TreeTypes
 			var settings = new CustomTreeDrawerSettings()
 			{
 				SegmentHeight = 10,
-				SegmentWidth = 140,
+				SegmentWidth = 100,
 				CanvasPaddingX = 5,
 				CanvasPaddingY = 5,
 				NodeSize = 16,

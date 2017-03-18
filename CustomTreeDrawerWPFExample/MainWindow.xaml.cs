@@ -23,7 +23,7 @@ namespace CustomTreeDrawerWPFExample
 			wpfDrawerSettings = WPFTreeNodeDrawerSettings.CreateDefault();
 			rootNode = GetNodes();
 			drawer = new WPFTreeNodeDrawer(TreeGrid, wpfDrawerSettings);
-			Button_Click_1(null, new RoutedEventArgs());
+			Button_Click(null, new RoutedEventArgs());
 		}
 
 		private CustomTreeNode GetNodes()
@@ -54,14 +54,21 @@ namespace CustomTreeDrawerWPFExample
 
 		private void Button_Click(object sender, RoutedEventArgs e)
 		{
-			var treeType = new NewLineCustomTreeType(drawer);
+			var treeType = new DefaultCustomTreeType(drawer);
 			tree = new CustomTree(treeType);
 			tree.Update(rootNode);
 		}
 
 		private void Button_Click_1(object sender, RoutedEventArgs e)
 		{
-			var treeType = new DefaultCustomTreeType(drawer);
+			var treeType = new NewLineCustomTreeType(drawer);
+			tree = new CustomTree(treeType);
+			tree.Update(rootNode);
+		}
+
+		private void Button_Click_2(object sender, RoutedEventArgs e)
+		{
+			var treeType = new NewLineCustomTreeTypeReverse(drawer);
 			tree = new CustomTree(treeType);
 			tree.Update(rootNode);
 		}

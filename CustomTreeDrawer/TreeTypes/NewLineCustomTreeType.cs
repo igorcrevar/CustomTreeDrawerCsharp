@@ -11,8 +11,8 @@ namespace CustomTreeDrawer.TreeTypes
 	{
 		private readonly ICustomTreeDrawer actualDrawer;
 		private CustomTreeDrawerSettings settings;
-		private double width = double.NaN;
-		private double height = double.NaN;
+		private double width;
+		private double height;
 
 		public NewLineCustomTreeType(CustomTreeDrawerSettings settings, ICustomTreeDrawer actualDrawer)
 		{
@@ -21,14 +21,14 @@ namespace CustomTreeDrawer.TreeTypes
 		}
 
 		public NewLineCustomTreeType(ICustomTreeDrawer actualDrawer)
+			: this(CreateDefaultSettings(), actualDrawer)
 		{
-			this.settings = CreateDefaultSettings();
-			this.actualDrawer = actualDrawer;
 		}
 
 		public void Draw(CustomTreeNode node, bool isSelected)
 		{
 			double nodeSizeHalf = settings.NodeSize / 2.0f;
+			double segmentHeightHalf = settings.SegmentHeight / 2.0f;
 			double x, y;
 			GetXY(node, out x, out y);
 
@@ -39,7 +39,7 @@ namespace CustomTreeDrawer.TreeTypes
 				actualDrawer.DrawLine(x,
 										  x,
 										  y + settings.NodeSize,
-										  y + settings.NodeSize + settings.SegmentHeight / 2.0f);
+										  y + settings.NodeSize + segmentHeightHalf);
 
 				// more children
 				if (node.ChildrenCount > 1)
@@ -47,8 +47,8 @@ namespace CustomTreeDrawer.TreeTypes
 					// horizonatal line
 					actualDrawer.DrawLine(x,
 											  x + settings.SegmentWidth * node.ChildrenWidth,
-											  y + settings.NodeSize + settings.SegmentHeight / 2.0f,
-											  y + settings.NodeSize + settings.SegmentHeight / 2.0f);
+											  y + settings.NodeSize + segmentHeightHalf,
+											  y + settings.NodeSize + segmentHeightHalf);
 				}
 			}
 
@@ -57,16 +57,16 @@ namespace CustomTreeDrawer.TreeTypes
 			{
 				actualDrawer.DrawLine(x,
 										  x,
-										  y - settings.SegmentHeight / 2.0f - (settings.SegmentHeight + settings.NodeSize) * (node.Id - node.ParentId - 1),
+										  y - segmentHeightHalf - (settings.SegmentHeight + settings.NodeSize) * (node.Id - node.ParentId - 1),
 										  y);
 			}
 
 			if (isSelected)
 			{
-				actualDrawer.DrawWholeLineSelected(y - settings.SegmentHeight / 2.0f, settings.SegmentHeight + settings.NodeSize);
+				actualDrawer.DrawWholeLineSelected(y - segmentHeightHalf, settings.SegmentHeight + settings.NodeSize);
 			}
 
-			actualDrawer.DrawNode(x - settings.NodeSize / 2.0f,
+			actualDrawer.DrawNode(x - nodeSizeHalf,
 									  y,
 									  settings.NodeSize,
 									  false, node.Info);

@@ -14,14 +14,15 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <ScrollViewer Grid.Row="0" Grid.ColumnSpan="3" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <ScrollViewer Grid.Row="0" Grid.ColumnSpan="4" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
             <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="TreeGrid" PreviewMouseLeftButtonDown="TreeGrid_PreviewMouseLeftButtonDown">
-
             </Grid>
         </ScrollViewer>
-        <Button Grid.Row="1" Grid.Column="0" Click="Button_Click" Margin="10" Padding="10">New Line Type</Button>
-        <Button Grid.Row="1" Grid.Column="1" Click="Button_Click_1" Margin="10" Padding="10">Default Type</Button>
+        <Button Grid.Row="1" Grid.Column="0" Click="Button_Click" Margin="10" Padding="10">Default Type</Button>
+        <Button Grid.Row="1" Grid.Column="1" Click="Button_Click_1" Margin="10" Padding="10">New Line Type</Button>
+        <Button Grid.Row="1" Grid.Column="2" Click="Button_Click_2" Margin="10" Padding="10">New Line Type Reverse</Button>
     </Grid>
 </Window>
