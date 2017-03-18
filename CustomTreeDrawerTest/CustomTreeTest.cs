@@ -15,7 +15,7 @@ namespace CustomTreeDrawerTest
 	public class CustomTreeTest
 	{
 		private CustomTree customTree;
-		
+
 		/// <summary>
 		/// CustomTreeTest FixtureSetUp
 		/// </summary>

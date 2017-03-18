@@ -6,10 +6,10 @@ using System.Linq;
 
 namespace CustomTreeDrawerTest
 {
-    /// <summary>
-    /// CustomTreeNodeTest tests
-    /// </summary>
-    [TestFixture]
+	/// <summary>
+	/// CustomTreeNodeTest tests
+	/// </summary>
+	[TestFixture]
 	public class CustomTreeNodeTest
 	{
 		private CustomTreeNode complexRoot;

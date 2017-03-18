@@ -13,5 +13,5 @@ namespace CustomTreeDrawer.Drawers.Interfaces
 		bool AllowsPartialRedraw { get; }
 		void DrawWholeLineSelected(double y, double height);
 		double GetSizeOf(CustomTreeNode node, double nodeSize, bool isSelected);
-    }
+	}
 }

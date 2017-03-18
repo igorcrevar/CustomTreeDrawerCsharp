@@ -16,7 +16,7 @@ namespace CustomTreeDrawer.Helpers
 		/// <param name="treeType">ICustomTreeType instance</param>
 		/// <param name="drawer">ICustomTreeDrawer instance</param>
 		/// <param name="nodeSize">node size from settings</param>
-        /// <returns>max size/width</returns>
+		/// <returns>max size/width</returns>
 		public static double DetermineSize(CustomTreeNode rootNode, ICustomTreeType treeType, ICustomTreeDrawer drawer, double nodeSize)
 		{
 			double maxSize = 0;

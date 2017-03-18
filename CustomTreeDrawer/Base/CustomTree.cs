@@ -63,7 +63,7 @@ namespace CustomTreeDrawer.Base
 			}
 
 			this.nodeDrawer.BeginDraw();
-            foreach (var node in rootNode.TraverseBreadthFirst())
+			foreach (var node in rootNode.TraverseBreadthFirst())
 			{
 				nodeDrawer.Draw(node, node == selectedNode);
 			}

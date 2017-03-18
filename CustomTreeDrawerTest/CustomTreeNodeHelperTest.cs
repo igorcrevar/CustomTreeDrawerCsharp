@@ -28,14 +28,15 @@ namespace CustomTreeDrawerTest
 			var n2 = new CustomTreeNode(new SomeCustomClass(str2));
 			var root = new CustomTreeNode(new SomeCustomClass("11"), new List<CustomTreeNode>() { n1, n2 });
 			root.Init();
-			
+
 			var sett = new CustomTreeDrawerSettings();
 			sett.CanvasPaddingX = sett.CanvasPaddingY = 0;
 			sett.SegmentHeight = sett.SegmentWidth = 5;
 			sett.NodeSize = 2;
-			
+
 			ICustomTreeDrawer customTypeDrawer = Substitute.For<ICustomTreeDrawer>();
-			customTypeDrawer.GetSizeOf(Arg.Any<CustomTreeNode>(), Arg.Any<double>(), Arg.Any<bool>()).Returns(a => {
+			customTypeDrawer.GetSizeOf(Arg.Any<CustomTreeNode>(), Arg.Any<double>(), Arg.Any<bool>()).Returns(a =>
+			{
 				var node = (CustomTreeNode)a[0];
 				var size = (double)a[1];
 				return size + 5 * ((SomeCustomClass)node.Info).Title.Length;

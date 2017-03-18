@@ -19,13 +19,13 @@ namespace CustomTreeDrawer.TreeTypes
 			this.actualDrawer = actualDrawer;
 		}
 
-        public DefaultCustomTreeType(ICustomTreeDrawer actualDrawer)
-        {
-            this.settings = CreateDefaultSettings();
-            this.actualDrawer = actualDrawer;
-        }
+		public DefaultCustomTreeType(ICustomTreeDrawer actualDrawer)
+		{
+			this.settings = CreateDefaultSettings();
+			this.actualDrawer = actualDrawer;
+		}
 
-        public void Draw(CustomTreeNode node, bool isSelected)
+		public void Draw(CustomTreeNode node, bool isSelected)
 		{
 			double nodeSizeHalf = settings.NodeSize / 2.0f;
 			double x, y;
@@ -60,7 +60,7 @@ namespace CustomTreeDrawer.TreeTypes
 										  y);
 			}
 
-			actualDrawer.DrawNode(x - settings.NodeSize / 2.0f, 
+			actualDrawer.DrawNode(x - settings.NodeSize / 2.0f,
 									  y,
 									  settings.NodeSize,
 									  isSelected, node.Info);
@@ -100,7 +100,7 @@ namespace CustomTreeDrawer.TreeTypes
 			height = settings.CanvasPaddingY * 2 + (rootNode.Height - 1) * settings.SegmentHeight + settings.NodeSize * rootNode.Height;
 			actualDrawer.OnUpdate(width, height);
 		}
-		
+
 		public double Width
 		{
 			get { return width; }
@@ -113,7 +113,7 @@ namespace CustomTreeDrawer.TreeTypes
 
 		public void BeginDraw()
 		{
-            actualDrawer.BeginDraw();
+			actualDrawer.BeginDraw();
 		}
 
 		public void EndDraw()

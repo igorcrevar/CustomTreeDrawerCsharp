@@ -39,8 +39,8 @@ namespace CustomTreeDrawerWPF.Drawers
 			}
 		}
 
-        private const int VERY_LARGE_WIDTH_BECAUSE_OF_ACTUALWIDTH_PROBLEM = 20192;
-        private readonly Panel parent;
+		private const int VERY_LARGE_WIDTH_BECAUSE_OF_ACTUALWIDTH_PROBLEM = 20192;
+		private readonly Panel parent;
 		private readonly VisualHost drawingHost = new VisualHost();
 		private DrawingContext drawingContext;
 		private WPFTreeNodeDrawerSettings settings;
@@ -62,14 +62,14 @@ namespace CustomTreeDrawerWPF.Drawers
 		public virtual void DrawNode(double x, double y, double size, bool isSelected, object nodeInfo)
 		{
 			var formattedText = GetFormattedText(nodeInfo, isSelected);
-            drawingContext.DrawText(formattedText, new Point(x + size + settings.TextPositionCorrection.X, y + settings.TextPositionCorrection.Y));
+			drawingContext.DrawText(formattedText, new Point(x + size + settings.TextPositionCorrection.X, y + settings.TextPositionCorrection.Y));
 			drawingContext.DrawRectangle(!isSelected ? settings.NodeColor : settings.NodeSelectedColor,
 											 new Pen(settings.LineColor, settings.LineThickness), new Rect(x, y, size, size));
 		}
 
 		public void OnUpdate(double width, double height)
 		{
-            drawingHost.Width = width;
+			drawingHost.Width = width;
 			drawingHost.Height = height;
 		}
 
@@ -77,15 +77,15 @@ namespace CustomTreeDrawerWPF.Drawers
 		{
 			if (drawingContext != null)
 			{
-                drawingContext.Close();
-            }
+				drawingContext.Close();
+			}
 		}
 
 		public void BeginDraw()
 		{
 			drawingContext = drawingHost.Drawing.RenderOpen();
-            // fill parent with background color. Allow us clicking anywhere on parent
-            drawingContext.DrawRectangle(settings.BackgroundColor, new Pen(settings.BackgroundColor, 0.001), new Rect(0, 0, drawingHost.Width, drawingHost.Height));
+			// fill parent with background color. Allow us clicking anywhere on parent
+			drawingContext.DrawRectangle(settings.BackgroundColor, new Pen(settings.BackgroundColor, 0.001), new Rect(0, 0, drawingHost.Width, drawingHost.Height));
 		}
 
 		public bool AllowsPartialRedraw
@@ -104,30 +104,30 @@ namespace CustomTreeDrawerWPF.Drawers
 		{
 			if (node.Info is ICustomTreeSimpleNodeInfo)
 			{
-                var formattedText = GetFormattedText(node.Info, isSelected);
+				var formattedText = GetFormattedText(node.Info, isSelected);
 				return formattedText.Width + nodeSize + settings.TextPositionCorrection.X;
 			}
 
 			return 0.0;
 		}
 
-        public void Dispose()
+		public void Dispose()
 		{
 		}
-        
-        protected FormattedText GetFormattedText(object nodeInfo, bool isSelected)
-        {
-            ICustomTreeSimpleNodeInfo versionNodeInfo = nodeInfo as ICustomTreeSimpleNodeInfo;
-            if (versionNodeInfo == null)
-            {
-                throw new ArgumentException("Node.Info must be ICustomTreeSimpleNodeInfo implementation for WPF drawer");
-            }
-            var formattedText = new FormattedText(versionNodeInfo.Title,
-                                                  settings.FontCultureInfo,
-                                                  FlowDirection.LeftToRight,
-                                                  new Typeface(settings.FontFamily, FontStyles.Normal, isSelected ? FontWeights.Bold : FontWeights.Normal, FontStretches.Normal),
-                                                  settings.FontSize, settings.FontColor);
-            return formattedText;
-        }        
-    }
+
+		protected FormattedText GetFormattedText(object nodeInfo, bool isSelected)
+		{
+			ICustomTreeSimpleNodeInfo versionNodeInfo = nodeInfo as ICustomTreeSimpleNodeInfo;
+			if (versionNodeInfo == null)
+			{
+				throw new ArgumentException("Node.Info must be ICustomTreeSimpleNodeInfo implementation for WPF drawer");
+			}
+			var formattedText = new FormattedText(versionNodeInfo.Title,
+												  settings.FontCultureInfo,
+												  FlowDirection.LeftToRight,
+												  new Typeface(settings.FontFamily, FontStyles.Normal, isSelected ? FontWeights.Bold : FontWeights.Normal, FontStretches.Normal),
+												  settings.FontSize, settings.FontColor);
+			return formattedText;
+		}
+	}
 }
